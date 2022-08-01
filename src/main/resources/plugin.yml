@@ -6,3 +6,4 @@ commands:
   removetimer:
   open:
   moveworld:
+  world:
