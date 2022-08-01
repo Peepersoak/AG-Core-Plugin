@@ -3,6 +3,9 @@ package com.peepersoak.moblimitter;
 import com.peepersoak.moblimitter.commands.OpenInventory;
 import com.peepersoak.moblimitter.commands.TeleportWorld;
 import com.peepersoak.moblimitter.commands.TeleportWorldCompleter;
+import com.peepersoak.moblimitter.mobs.CreeperMob;
+import com.peepersoak.moblimitter.mobs.Izon;
+import com.peepersoak.moblimitter.mobs.PlayerZombie;
 import com.peepersoak.moblimitter.mobs.ZombieSnatcher;
 import com.peepersoak.moblimitter.world.WorldEvent;
 import org.bukkit.*;
@@ -35,6 +38,9 @@ public final class MobLimitter extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new InteractiveChat(), this);
         Bukkit.getPluginManager().registerEvents(new AnvilName(), this);
 //        Bukkit.getPluginManager().registerEvents(new FishPlayerEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new Izon(), this);
+        Bukkit.getPluginManager().registerEvents(new CreeperMob(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerZombie(), this);
 
         Bukkit.getPluginManager().registerEvents(new WorldEvent(), this);
 
