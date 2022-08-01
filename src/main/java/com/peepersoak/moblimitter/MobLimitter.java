@@ -19,7 +19,6 @@ public final class MobLimitter extends JavaPlugin implements Listener {
 
     private LimitMobs limitMobs;
     private final DeathLocation deathLocation = new DeathLocation();
-
     public static MobLimitter instance;
     private List<String> worldNames;
 

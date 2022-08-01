@@ -38,6 +38,10 @@ public class TeleportWorld implements CommandExecutor {
 
                     if (count <= 0) {
                         for (Player target : Bukkit.getOnlinePlayers()) {
+                            if (hasItem(target)) {
+                                target.sendMessage(Utils.color("&cFailed to move! You still have item in your Inventory!"));
+                                continue;
+                            }
                             target.getInventory().clear();
                             target.teleport(location);
                         }
@@ -75,6 +79,10 @@ public class TeleportWorld implements CommandExecutor {
                         target.sendMessage(Utils.color("&c10 seconds before teleporting! Your Inventory will be cleared so removed all of your items!!"));
                     }
                     if (count <= 0) {
+                        if (hasItem(target)) {
+                            target.sendMessage(Utils.color("&cFailed to move! You still have item in your Inventory!"));
+                            return;
+                        }
                         target.getInventory().clear();
                         target.teleport(location);
                         this.cancel();
@@ -86,5 +94,9 @@ public class TeleportWorld implements CommandExecutor {
             }.runTaskTimer(MobLimitter.instance, 0, 20);
         }
         return false;
+    }
+
+    private boolean hasItem(Player player) {
+        return !player.getInventory().isEmpty();
     }
 }

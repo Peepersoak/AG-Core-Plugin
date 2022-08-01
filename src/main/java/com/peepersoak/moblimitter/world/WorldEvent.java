@@ -12,7 +12,6 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.world.WorldInitEvent;
-import org.bukkit.inventory.Inventory;
 
 public class WorldEvent implements Listener {
 
@@ -48,6 +47,7 @@ public class WorldEvent implements Listener {
         Location location = e.getPlayer().getLocation();
         if (MobLimitter.instance.getWorldNames().contains(location.getWorld().getName())) {
             e.setCancelled(true);
+            e.getPlayer().sendMessage(Utils.color("&cEnder Chest is disabled on this world!"));
         }
     }
 }
