@@ -1,0 +1,8 @@
+name: MobLimitter
+version: '${project.version}'
+main: com.peepersoak.moblimitter.MobLimitter
+api-version: 1.19
+commands:
+  removetimer:
+  open:
+  moveworld:

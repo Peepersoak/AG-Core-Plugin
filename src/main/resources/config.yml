@@ -1,0 +1,12 @@
+Distance:
+  x: 16
+  y: 16
+  z: 16
+Max_Mobs: 16
+
+Add_World:
+  - AG_2021
+  - AG_The_Beginning
+  - AG_The_Underground
+  - AG_Tower
+  - AG-2020
