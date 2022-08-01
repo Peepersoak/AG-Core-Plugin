@@ -20,20 +20,11 @@ public class WorldCommand implements CommandExecutor {
         if (!(sender instanceof Player player)) return false;
         if (!player.isOp()) return false;
 
-        List<String> worldNames = MobLimitter.instance.getConfig().getStringList("Add_World");
-        if (worldNames.isEmpty()) return false;
-
         if (args.length == 1) {
             String cmd = args[0];
 
-            if (cmd.equalsIgnoreCase("load")) {
-                for (String worldName : worldNames) {
-                    new WorldCreator(worldName).createWorld();
-                }
-            }
-
-            else if (cmd.equalsIgnoreCase("unload")) {
-                for (String worldName : worldNames) {
+            if (cmd.equalsIgnoreCase("unload")) {
+                for (String worldName : MobLimitter.instance.getWorldNames()) {
                     World world = Bukkit.getWorld(worldName);
                     if (world == null) continue;
                     Bukkit.unloadWorld(world, false);

@@ -4,7 +4,7 @@ import com.peepersoak.moblimitter.commands.OpenInventory;
 import com.peepersoak.moblimitter.commands.TeleportWorld;
 import com.peepersoak.moblimitter.commands.TeleportWorldCompleter;
 import com.peepersoak.moblimitter.mobs.ZombieSnatcher;
-import com.peepersoak.moblimitter.world.WorldCommand;
+import com.peepersoak.moblimitter.world.WorldEvent;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityBreedEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class MobLimitter extends JavaPlugin implements Listener {
@@ -20,12 +21,14 @@ public final class MobLimitter extends JavaPlugin implements Listener {
     private final DeathLocation deathLocation = new DeathLocation();
 
     public static MobLimitter instance;
+    private List<String> worldNames;
 
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         instance = this;
+        worldNames = getConfig().getStringList("Add_World");
 
         limitMobs = new LimitMobs(getConfig());
         Bukkit.getPluginManager().registerEvents(this, this);
@@ -33,6 +36,8 @@ public final class MobLimitter extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new InteractiveChat(), this);
         Bukkit.getPluginManager().registerEvents(new AnvilName(), this);
 //        Bukkit.getPluginManager().registerEvents(new FishPlayerEvent(), this);
+
+        Bukkit.getPluginManager().registerEvents(new WorldEvent(), this);
 
         Bukkit.getPluginManager().registerEvents(new ZombieSnatcher(), this);
 
@@ -42,7 +47,7 @@ public final class MobLimitter extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("moveworld")).setExecutor(new TeleportWorld());
         Objects.requireNonNull(getCommand("moveworld")).setTabCompleter(new TeleportWorldCompleter());
 
-        Objects.requireNonNull(getCommand("world")).setExecutor(new WorldCommand());
+        loadWorld();
     }
 
     @EventHandler
@@ -55,5 +60,16 @@ public final class MobLimitter extends JavaPlugin implements Listener {
             }
             animal.remove();
         }
+    }
+
+    private void loadWorld() {
+        for (String worldName: worldNames) {
+            new WorldCreator(worldName).createWorld();
+            MobLimitter.instance.getLogger().info(worldName + " has been loaded");
+        }
+    }
+
+    public List<String> getWorldNames() {
+        return worldNames;
     }
 }
