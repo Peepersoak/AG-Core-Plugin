@@ -42,6 +42,7 @@ public class TeleportWorld implements CommandExecutor {
                                 target.sendMessage(Utils.color("&cFailed to move! You still have item in your Inventory!"));
                                 continue;
                             }
+                            if (target.getLocation().getWorld() == location.getWorld()) continue;
                             target.getInventory().clear();
                             target.teleport(location);
                         }
