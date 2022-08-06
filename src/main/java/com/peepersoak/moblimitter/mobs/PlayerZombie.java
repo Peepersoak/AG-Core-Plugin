@@ -30,7 +30,7 @@ public class PlayerZombie implements Listener {
 
         Location location = player.getLocation();
 
-        if (location.getY() > 0) return;
+        if (location.getY() > Utils.buffMobYSpawn()) return;
 
         String name = Utils.color("&c" + player.getName());
 

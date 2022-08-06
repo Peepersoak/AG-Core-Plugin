@@ -3,10 +3,7 @@ package com.peepersoak.moblimitter;
 import com.peepersoak.moblimitter.commands.OpenInventory;
 import com.peepersoak.moblimitter.commands.TeleportWorld;
 import com.peepersoak.moblimitter.commands.TeleportWorldCompleter;
-import com.peepersoak.moblimitter.mobs.CreeperMob;
-import com.peepersoak.moblimitter.mobs.Izon;
-import com.peepersoak.moblimitter.mobs.PlayerZombie;
-import com.peepersoak.moblimitter.mobs.ZombieSnatcher;
+import com.peepersoak.moblimitter.mobs.*;
 import com.peepersoak.moblimitter.world.WorldEvent;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -45,6 +42,7 @@ public final class MobLimitter extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new WorldEvent(), this);
 
         Bukkit.getPluginManager().registerEvents(new ZombieSnatcher(), this);
+        Bukkit.getPluginManager().registerEvents(new SuperZombie(), this);
 
         Objects.requireNonNull(getCommand("removetimer")).setExecutor(deathLocation);
         Objects.requireNonNull(getCommand("open")).setExecutor(new OpenInventory());

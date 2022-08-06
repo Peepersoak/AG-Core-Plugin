@@ -14,8 +14,11 @@ public class Utils {
         int random = rand.nextInt(max) + 1;
         return random <= min;
     }
-
     public static int getRandomNumber(int max) {
         return rand.nextInt(max);
+    }
+
+    public static int buffMobYSpawn() {
+        return 20;
     }
 }

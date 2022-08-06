@@ -7,7 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -15,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OpenInventory implements CommandExecutor {
 
+    @Deprecated
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
@@ -60,6 +60,7 @@ public class OpenInventory implements CommandExecutor {
         return false;
     }
 
+    @Deprecated
     private ItemStack getBlackPane() {
         ItemStack item = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta meta = item.getItemMeta();

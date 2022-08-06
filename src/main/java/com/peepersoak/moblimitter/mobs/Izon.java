@@ -26,7 +26,7 @@ public class Izon implements Listener {
     @EventHandler
     public void onSpawn(EntitySpawnEvent e) {
         if (!(e.getEntity() instanceof Zombie zombie)) return;
-        if (e.getLocation().getY() > 0) return;
+        if (e.getLocation().getY() > Utils.buffMobYSpawn()) return;
         if (rand.nextInt(100) + 1 > 25) return;
         if (izon != null && !izon.isDead()) return;
 
