@@ -11,3 +11,7 @@ commands:
     description: Base command
   world:
     description: Base command
+  val:
+    description: Base command
+  account:
+    description: Base command

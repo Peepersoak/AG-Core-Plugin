@@ -104,6 +104,7 @@ public class ItemsList {
         item.setItemMeta(meta);
 
         for (Enchantment enchantment : Enchantment.values()) {
+            if (enchantment.getKey().toString().split(":")[1].equalsIgnoreCase("thorns")) continue;
             if (enchantment.canEnchantItem(item)) {
                 item.addUnsafeEnchantment(enchantment, enchantment.getMaxLevel());
             }

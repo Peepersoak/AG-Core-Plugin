@@ -1,9 +1,13 @@
 package com.peepersoak.moblimitter;
 
+import com.peepersoak.moblimitter.guns.ItemSkin;
 import com.peepersoak.moblimitter.commands.OpenInventory;
 import com.peepersoak.moblimitter.commands.TeleportWorld;
 import com.peepersoak.moblimitter.commands.TeleportWorldCompleter;
+import com.peepersoak.moblimitter.guns.Sounds;
 import com.peepersoak.moblimitter.mobs.*;
+import com.peepersoak.moblimitter.protection.AccountProtection;
+import com.peepersoak.moblimitter.protection.AcountProtectionCompletor;
 import com.peepersoak.moblimitter.world.WorldEvent;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -17,9 +21,9 @@ import java.util.Objects;
 
 public final class MobLimitter extends JavaPlugin implements Listener {
 
+    public static MobLimitter instance;
     private LimitMobs limitMobs;
     private final DeathLocation deathLocation = new DeathLocation();
-    public static MobLimitter instance;
     private List<String> worldNames;
 
     @Override
@@ -44,11 +48,21 @@ public final class MobLimitter extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new ZombieSnatcher(), this);
         Bukkit.getPluginManager().registerEvents(new SuperZombie(), this);
 
+        Bukkit.getPluginManager().registerEvents(new GeneralEvents(), this);
+
         Objects.requireNonNull(getCommand("removetimer")).setExecutor(deathLocation);
         Objects.requireNonNull(getCommand("open")).setExecutor(new OpenInventory());
 
         Objects.requireNonNull(getCommand("moveworld")).setExecutor(new TeleportWorld());
         Objects.requireNonNull(getCommand("moveworld")).setTabCompleter(new TeleportWorldCompleter());
+
+        final AccountProtection accountProtection = new AccountProtection();
+        Bukkit.getPluginManager().registerEvents(accountProtection, this);
+        Objects.requireNonNull(getCommand("account")).setExecutor(accountProtection);
+        Objects.requireNonNull(getCommand("account")).setTabCompleter(new AcountProtectionCompletor());
+
+        Objects.requireNonNull(getCommand("val")).setExecutor(new ItemSkin());
+        Bukkit.getPluginManager().registerEvents(new Sounds(), this);
 
         loadWorld();
     }

@@ -47,7 +47,7 @@ public class Izon implements Listener {
 
         zombie.setCanPickupItems(false);
         zombie.setShouldBurnInDay(false);
-        zombie.setBaby();
+
         zombie.setHealth(MAX_HEALTH);
         zombie.setCustomName(Utils.color("&cIzonbie"));
         zombie.setCustomNameVisible(true);
@@ -74,6 +74,7 @@ public class Izon implements Listener {
 
     private ItemStack getFullEnchantItem(ItemStack itemStack) {
         for (Enchantment enchantment : Enchantment.values()) {
+            if (enchantment.getKey().toString().split(":")[1].equalsIgnoreCase("thorns")) continue;
             if (enchantment.canEnchantItem(itemStack)) {
                 itemStack.addUnsafeEnchantment(enchantment, enchantment.getMaxLevel());
             }

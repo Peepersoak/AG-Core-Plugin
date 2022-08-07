@@ -5,8 +5,6 @@ import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
@@ -19,7 +17,6 @@ public class CreeperMob implements Listener {
         if (!(e.getEntity() instanceof Creeper creeper)) return;
         if (e.getLocation().getY() > Utils.buffMobYSpawn()) return;
         if (rand.nextInt(100) + 1 > 3) return;
-
-        creeper.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0, false , false));
+        creeper.setSilent(true);
     }
 }
